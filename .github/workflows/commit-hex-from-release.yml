@@ -2,7 +2,7 @@ name: Commit .hex release assets into /releases
 
 on:
   release:
-    types: [published]
+    types: [published, edited]   # <— run on initial publish AND later asset changes
 
 permissions:
   contents: write
@@ -59,4 +59,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add releases/"$TAG"
-          git commit -m
+          git commit -m "Add .hex release assets for $TAG"
+          git push
